@@ -13,5 +13,15 @@ namespace DemoBayteq01
         {
             InitializeComponent();
         }
+
+        private void EntryName_OnFocused(object sender, FocusEventArgs e)
+        {
+
+        }
+
+        private void Button_OnClicked(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

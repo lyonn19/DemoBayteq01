@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:DemoBayteq01.ViewModels;assembly=DemoBayteq01"
+             x:Class="DemoBayteq01.Views.PersonListView">
+    <ContentPage.BindingContext>
+        <viewModels:PersonViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <StackLayout BackgroundColor="Transparent">
+            <ListView x:Name="ListViewContacts" 
+                     BackgroundColor="Transparent"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="False">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout  Orientation="Horizontal">
+                                <Label Text="{Binding Name}" IsVisible="False"/>
+                                <Label Text="{Binding Email}" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

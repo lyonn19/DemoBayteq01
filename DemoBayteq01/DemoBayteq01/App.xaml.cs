@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using DemoBayteq01.Views;
 using Xamarin.Forms;
 
 namespace DemoBayteq01
@@ -13,7 +13,7 @@ namespace DemoBayteq01
         {
             InitializeComponent();
 
-            MainPage = new DemoBayteq01.MainPage();
+            MainPage = new PersonListView();
         }
 
         protected override void OnStart()
