@@ -21,10 +21,10 @@ namespace DemoBayteq01.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (App.PersonViewModel.Personas.Count == 0)
-            {
-                App.PersonViewModel.GetPersonsCommand.Execute(null);
-            }
+            //if (App.PersonViewModel.Personas.Count == 0)
+            //{
+            //    App.PersonViewModel.GetPersonsCommand.Execute(null);
+            //}
         }
 
         private void Contact_OnClicked(object sender, EventArgs e)
