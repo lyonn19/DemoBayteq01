@@ -9,17 +9,13 @@
     <ContentPage.Content>
         <StackLayout Margin="30">
             <Label Text="Nombre"/>
-            <Entry x:Name="EntryName" 
-                   Text="{Binding Name}"/>
+            <Entry x:Name="EntryName"/>
             <Label Text="Email"/>
-            <Entry x:Name="EntryEmail" 
-                   Text="{Binding Email}"/>
+            <Entry x:Name="EntryEmail"/>
             <Label Text="Fecha de Nacimiento"/>
             <DatePicker x:Name="DatePickerBirthDay" 
-                   Date="{Binding Birthday}"
                    Format="dd/MM/yyyy"/>
-            <Switch x:Name="SwitchPep" 
-                   IsToggled="{Binding PublicPerson}"/>
+            <Switch x:Name="SwitchPep"/>
             <Button x:Name="Button" Text="Agregar.." 
                    Clicked="Button_OnClicked"/>
         </StackLayout>    

@@ -15,14 +15,15 @@ namespace DemoBayteq01.Views
         public PersonListView()
         {
             InitializeComponent();
+            ListViewPersons.ItemsSource = App.PersonViewModel.Personas;
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (App.PersonViewModel.Personas.Count < 0)
+            if (App.PersonViewModel.Personas.Count == 0)
             {
-                App.PersonViewModel.GetContactsCommand.Execute(null);
+                App.PersonViewModel.GetPersonsCommand.Execute(null);
             }
         }
 

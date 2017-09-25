@@ -37,7 +37,14 @@ namespace DemoBayteq01.Views
         private void Button_OnClicked(object sender, EventArgs e)
         {
             if (!FormValidation()) return;
-            App.PersonViewModel.AddPersonCommand.Execute(null);
+            //App.PersonViewModel.AddPersonCommand.Execute(null);
+            App.PersonViewModel.AddNewPerson(new Person()
+            {
+                Name = EntryName.Text,
+                Email = EntryEmail.Text,
+                Birthday = DatePickerBirthDay.Date,
+                PublicPerson = SwitchPep.IsToggled
+            });
             Navigation.PopAsync(false);
         }
     }

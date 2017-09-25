@@ -17,7 +17,7 @@
                       VerticalOptions="FillAndExpand">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Name}" Detail="{Binding Email}"/>
+                        <TextCell Text="{Binding Name}" TextColor="Blue" Detail="{Binding Email}" DetailColor="Red"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

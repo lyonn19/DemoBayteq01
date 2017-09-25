@@ -14,25 +14,13 @@ namespace DemoBayteq01.ViewModels
 {
     public class PersonViewModel : INotifyPropertyChanged
     {
-
         public PersonViewModel()
         {
             Personas = new ObservableCollection<Person>();
         }
-
-        #region Funcionalidades
-
-        public void AddNewPerson(Person nPerson)
-        {
-            Personas.Add(nPerson);
-        }
-
-        #endregion
-
         #region Propieddades
 
         private ObservableCollection<Person> _personas;
-
         public ObservableCollection<Person> Personas
         {
             get { return _personas; }
@@ -44,7 +32,6 @@ namespace DemoBayteq01.ViewModels
         }
 
         private string _name;
-
         public string Name
         {
             get { return _name; }
@@ -56,7 +43,6 @@ namespace DemoBayteq01.ViewModels
         }
 
         private string _email;
-
         public string Email
         {
             get { return _email; }
@@ -68,7 +54,6 @@ namespace DemoBayteq01.ViewModels
         }
 
         private DateTime _birthday;
-
         public DateTime Birthday
         {
             get { return _birthday; }
@@ -80,7 +65,6 @@ namespace DemoBayteq01.ViewModels
         }
 
         private bool _publicPerson;
-
         public bool PublicPerson
         {
             get { return _publicPerson; }
@@ -93,7 +77,7 @@ namespace DemoBayteq01.ViewModels
 
         #endregion
 
-        #region Modelos
+        #region Init Models
 
         public async Task PersonModel()
         {
@@ -103,26 +87,56 @@ namespace DemoBayteq01.ViewModels
             Personas.Add(new Person()
             {
                 Name = "Yuri",
-                Email = "y@gmail.com",
+                Email = "yurita@gmail.com",
                 Birthday = DateTime.Now,
                 PublicPerson = false
             });
 
             Personas.Add(new Person()
             {
-                Name = "Pepe",
-                Email = "p@gmail.com",
+                Name = "Edison",
+                Email = "edison@gmail.com",
                 Birthday = DateTime.Now,
                 PublicPerson = true
             });
 
             Personas.Add(new Person()
             {
-                Name = "Juan",
-                Email = "j@gmail.com",
+                Name = "Willy",
+                Email = "willy@gmail.com",
                 Birthday = DateTime.Now,
                 PublicPerson = false
             });
+            Personas.Add(new Person()
+            {
+                Name = "Edu",
+                Email = "edu@gmail.com",
+                Birthday = DateTime.Now,
+                PublicPerson = false
+            });
+            Personas.Add(new Person()
+            {
+                Name = "Jose Escudero",
+                Email = "jose@gmail.com",
+                Birthday = DateTime.Now,
+                PublicPerson = false
+            });
+            Personas.Add(new Person()
+            {
+                Name = "Ruben",
+                Email = "rubiño@gmail.com",
+                Birthday = DateTime.Now,
+                PublicPerson = false
+            });
+        }
+
+        #endregion
+
+        #region Funcionalidades
+
+        public void AddNewPerson(Person nPerson)
+        {
+            Personas.Add(nPerson);
         }
 
         #endregion
@@ -143,7 +157,7 @@ namespace DemoBayteq01.ViewModels
 
         Command _getPersonCommand;
 
-        public Command GetContactsCommand
+        public Command GetPersonsCommand
         {
             get
             {
