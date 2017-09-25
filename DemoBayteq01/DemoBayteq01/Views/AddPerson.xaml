@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:DemoBayteq01.ViewModels;assembly=DemoBayteq01"
+             x:Class="DemoBayteq01.Views.AddPerson">
+    <ContentPage.BindingContext>
+        <viewModels:PersonViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Margin="30">
+            <Label Text="Nombre"/>
+            <Entry x:Name="EntryName" 
+                   Text="{Binding Name}"/>
+            <Label Text="Email"/>
+            <Entry x:Name="EntryEmail" 
+                   Text="{Binding Email}"/>
+            <Label Text="Fecha de Nacimiento"/>
+            <DatePicker x:Name="DatePickerBirthDay" 
+                   Date="{Binding Birthday}"
+                   Format="dd/MM/yyyy"/>
+            <Switch x:Name="SwitchPep" 
+                   IsToggled="{Binding PublicPerson}"/>
+            <Button x:Name="Button" Text="Agregar.." 
+                   Clicked="Button_OnClicked"/>
+        </StackLayout>    
+    </ContentPage.Content>
+</ContentPage> 

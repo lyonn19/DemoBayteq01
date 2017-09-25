@@ -6,23 +6,21 @@
     <ContentPage.BindingContext>
         <viewModels:PersonViewModel/>
     </ContentPage.BindingContext>
-    <StackLayout>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="Contact" Text="Add" Clicked="Contact_OnClicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
         <StackLayout BackgroundColor="Transparent">
-            <ListView x:Name="ListViewContacts" 
-                     BackgroundColor="Transparent"
-                      VerticalOptions="FillAndExpand"
-                      HasUnevenRows="False">
+            <ListView x:Name="ListViewPersons" 
+                      ItemsSource="{Binding Personas}"
+                      BackgroundColor="Transparent"
+                      VerticalOptions="FillAndExpand">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout  Orientation="Horizontal">
-                                <Label Text="{Binding Name}" IsVisible="False"/>
-                                <Label Text="{Binding Email}" VerticalTextAlignment="Center"/>
-                            </StackLayout>
-                        </ViewCell>
+                        <TextCell Text="{Binding Name}" Detail="{Binding Email}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-    </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

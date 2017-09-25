@@ -12,20 +12,23 @@ namespace DemoBayteq01.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PersonListView : ContentPage
     {
-        PersonViewModel gg;
         public PersonListView()
         {
-           
             InitializeComponent();
-            BindingContext = gg = new PersonViewModel();
-            ListViewContacts.ItemsSource = gg._personas;
         }
 
         protected override void OnAppearing()
         {
-            
-            gg.GetContactsCommand.Execute(null);
             base.OnAppearing();
+            if (App.PersonViewModel.Personas.Count < 0)
+            {
+                App.PersonViewModel.GetContactsCommand.Execute(null);
+            }
+        }
+
+        private void Contact_OnClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddPerson());
         }
     }
 }

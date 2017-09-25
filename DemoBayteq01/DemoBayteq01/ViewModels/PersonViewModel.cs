@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using DemoBayteq01.Models;
 using Xamarin.Forms;
 
@@ -13,21 +14,33 @@ namespace DemoBayteq01.ViewModels
 {
     public class PersonViewModel : INotifyPropertyChanged
     {
-        public IList<Person> _personas { get; set; }
 
         public PersonViewModel()
         {
-            _personas = new ObservableCollection<Person>();
+            Personas = new ObservableCollection<Person>();
         }
 
-        #region Notificación ViewModel
+        #region Funcionalidades
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public void AddNewPerson(Person nPerson)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Personas.Add(nPerson);
+        }
 
+        #endregion
+
+        #region Propieddades
+
+        private ObservableCollection<Person> _personas;
+
+        public ObservableCollection<Person> Personas
+        {
+            get { return _personas; }
+            set
+            {
+                _personas = value;
+                OnPropertyChanged();
+            }
         }
 
         private string _name;
@@ -66,9 +79,9 @@ namespace DemoBayteq01.ViewModels
             }
         }
 
-        private string _publicPerson;
+        private bool _publicPerson;
 
-        public string PublicPerson
+        public bool PublicPerson
         {
             get { return _publicPerson; }
             set
@@ -82,34 +95,34 @@ namespace DemoBayteq01.ViewModels
 
         #region Modelos
 
-        public async Task ContactModel()
+        public async Task PersonModel()
         {
-            _personas.Add(new Person()
-                {
-                    Name = "Yuri",
-                    Email = "y@gmail.com",
-                    Birthday = DateTime.Now,
-                    PublicPerson = false
-                }
-            );
+            // Supongo que esta es una tarea async
+            await Task.Delay(10); // para evitar warning
 
-            _personas.Add(new Person()
-                {
-                    Name = "Pepe",
-                    Email = "p@gmail.com",
-                    Birthday = DateTime.Now,
-                    PublicPerson = true
-                }
-            );
+            Personas.Add(new Person()
+            {
+                Name = "Yuri",
+                Email = "y@gmail.com",
+                Birthday = DateTime.Now,
+                PublicPerson = false
+            });
 
-            _personas.Add(new Person()
-                {
-                    Name = "Juan",
-                    Email = "j@gmail.com",
-                    Birthday = DateTime.Now,
-                    PublicPerson = false
-                }
-            );
+            Personas.Add(new Person()
+            {
+                Name = "Pepe",
+                Email = "p@gmail.com",
+                Birthday = DateTime.Now,
+                PublicPerson = true
+            });
+
+            Personas.Add(new Person()
+            {
+                Name = "Juan",
+                Email = "j@gmail.com",
+                Birthday = DateTime.Now,
+                PublicPerson = false
+            });
         }
 
         #endregion
@@ -117,6 +130,7 @@ namespace DemoBayteq01.ViewModels
         #region Comandos
 
         private bool _isBusy;
+
         public bool IsBusy
         {
             get { return _isBusy; }
@@ -127,15 +141,18 @@ namespace DemoBayteq01.ViewModels
             }
         }
 
-        Command _getContactsCommand;
+        Command _getPersonCommand;
+
         public Command GetContactsCommand
         {
             get
             {
-                return _getContactsCommand ?? (_getContactsCommand = new Command(async () => await GetContactsAsync(), () => !IsBusy));
+                return _getPersonCommand ?? (_getPersonCommand =
+                           new Command(async () => await GetPersonAsync(), () => !IsBusy));
             }
         }
-        public async Task GetContactsAsync()
+
+        public async Task GetPersonAsync()
         {
             if (IsBusy)
                 return;
@@ -143,15 +160,43 @@ namespace DemoBayteq01.ViewModels
             try
             {
                 IsBusy = true;
-                _personas.Clear();
-                await ContactModel();
+                Personas.Clear();
+                await PersonModel();
             }
             finally
             {
                 IsBusy = false;
             }
         }
+        
+        /*Command for Add*/
+        public ICommand AddPersonCommand {
 
+            get
+            {
+                return new Command(() => 
+                {
+                    Personas.Add(new Person()
+                    {
+                        Name = Name,
+                        Email = Email,
+                        Birthday = Birthday,
+                        PublicPerson = PublicPerson
+                    });
+                });
+            }
+        }
+        #endregion
+
+        #region Notificación ViewModel
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        }
 
         #endregion
 
